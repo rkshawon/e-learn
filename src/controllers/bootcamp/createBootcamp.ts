@@ -4,7 +4,6 @@ import BootCampModel from "../../model/Bootcamp";
 import geocoder from "../../utils/geocoder";
 
 const createBootcamp = asyncHandler(async (req: Request, res: Response) => {
-  console.log(req.body);
   const loc = await geocoder.geocode(req.body.address);
 
   req.body.location = {
@@ -17,6 +16,7 @@ const createBootcamp = asyncHandler(async (req: Request, res: Response) => {
     zipcode: loc[0].zipcode || "",
     country: loc[0].countryCode || "",
   };
+
   const data = await BootCampModel.create(req.body);
 
   res.status(200).json({
