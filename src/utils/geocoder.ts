@@ -1,11 +1,9 @@
 import config from "../../env-config";
-import NodeGeocoder, { BaseOptions } from "node-geocoder";
+import NodeGeocoder from "node-geocoder";
 
-const options = {
+const options: any = {
   provider: config.geo_coder,
-  fetch: "https",
   apiKey: config.geo_coder_api_key,
-  formatter: null,
 };
 
 const geocoder = NodeGeocoder(options);

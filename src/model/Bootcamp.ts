@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import IBootcamp from "../interface/bootcamp.interface";
 import slugify from "slugify";
+import geocoder from "../utils/geocoder";
 
 const BootcampSchema = new mongoose.Schema<IBootcamp>({
   name: {
@@ -36,6 +37,7 @@ const BootcampSchema = new mongoose.Schema<IBootcamp>({
   },
   address: {
     type: String,
+    select: false,
     required: [true, "Please add description"],
     maxlength: [100, "Address can not be more than 100 characters"],
   },
@@ -43,7 +45,7 @@ const BootcampSchema = new mongoose.Schema<IBootcamp>({
     type: {
       type: String,
       enum: ["Point"],
-      required: true,
+      default: "Point",
     },
     coordinates: {
       type: [Number],
@@ -55,7 +57,7 @@ const BootcampSchema = new mongoose.Schema<IBootcamp>({
     street: String,
     state: String,
     zipcode: String,
-    coountry: String,
+    country: String,
   },
   careers: {
     type: String,
@@ -98,5 +100,6 @@ BootcampSchema.pre("save", function (next) {
   this.slug = slugify(this.name, { lower: true });
   next();
 });
+
 const BootCampModel = mongoose.model("Bootcamp", BootcampSchema);
 export default BootCampModel;
