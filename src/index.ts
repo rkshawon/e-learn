@@ -5,6 +5,7 @@ import http from "http";
 import config from "../env-config";
 import mongoose from "mongoose";
 import router from "./routes/routes";
+import errorHandler from "./middleware/errorHandler";
 
 const app = express();
 const port = config.port || 8001;
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1", router);
+app.use(errorHandler);
 
 main().catch((err) => console.log(err));
 async function main() {
