@@ -1,5 +1,14 @@
 import { Document } from "mongoose";
 
+export enum Careers {
+  WebDeveloper = "Web developer",
+  MobileDevelopment = "Mobile development",
+  UIUX = "UI/UX",
+  Other = "Other",
+  FullStackDevelopment = "Full Stack Development",
+  DataScience = "Data Science",
+}
+
 interface Location {
   type: string;
   coordinates: number[];
@@ -20,7 +29,7 @@ interface IBootcamp extends Document {
   email?: string;
   address: string;
   location: Location;
-  careers: "Web developer" | "mobile development" | "ui/ux" | "Other";
+  careers: Careers;
   averageRating: number;
   averageCost?: number;
   photo: string;
