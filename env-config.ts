@@ -7,6 +7,8 @@ const config = {
   database_url: process.env.DATABASE_URL as string,
   geo_coder: process.env.GEOCODER_PROVIDER as string,
   geo_coder_api_key: process.env.GEOCODER_AP_KEY as string,
+  image_size_limit: process.env.IMAGE_SIZE_LIMIT,
+  file_upload_path: process.env.FILE_UPLOAD_PATH as string,
 };
 
 export default config;

@@ -6,6 +6,8 @@ import config from "../env-config";
 import mongoose from "mongoose";
 import router from "./routes/routes";
 import errorHandler from "./middleware/errorHandler";
+import fileUpload from "express-fileupload";
+import path from "path";
 
 const app = express();
 const port = config.port || 8001;
@@ -17,6 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 
 const server = http.createServer(app);
+
+app.use(fileUpload());
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
   res.send("This is a test route");

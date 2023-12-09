@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import IBootcamp, { Careers } from "../interface/bootcamp.interface";
 import slugify from "slugify";
+import { NextFunction } from "express";
 
 const BootcampSchema = new mongoose.Schema<IBootcamp>(
   {
@@ -107,11 +108,14 @@ BootcampSchema.pre("save", function (next) {
   next();
 });
 
-// @ts-ignore
-BootcampSchema.pre("remove", async function (this: any, next: any) {
-  await this.model("Course").deleteMany({ bootcamp: this._id });
-  next();
-});
+BootcampSchema.pre(
+  // @ts-ignore
+  "remove",
+  async function (this: IBootcamp, next: NextFunction) {
+    await this.model("Course").deleteMany({ bootcamp: this._id });
+    next();
+  }
+);
 
 BootcampSchema.virtual("courses", {
   ref: "Course",
@@ -120,5 +124,5 @@ BootcampSchema.virtual("courses", {
   justOne: false,
 });
 
-const BootCampModel = mongoose.model("Bootcamp", BootcampSchema);
+const BootCampModel = mongoose.model<IBootcamp>("Bootcamp", BootcampSchema);
 export default BootCampModel;
