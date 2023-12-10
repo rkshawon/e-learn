@@ -3,7 +3,7 @@ import asyncHandler from "../../middleware/asyncHandler";
 import BootCampModel from "../../model/Bootcamp";
 import CustomError from "../../utils/customError";
 
-const deleteBootcamp = asyncHandler(
+const getBootcampById = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
 
@@ -22,4 +22,4 @@ const deleteBootcamp = asyncHandler(
   }
 );
 
-export default deleteBootcamp;
+export default getBootcampById;

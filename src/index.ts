@@ -8,6 +8,7 @@ import router from "./routes/routes";
 import errorHandler from "./middleware/errorHandler";
 import fileUpload from "express-fileupload";
 import path from "path";
+import morgan from "morgan";
 
 const app = express();
 const port = config.port || 8001;
@@ -22,6 +23,8 @@ const server = http.createServer(app);
 
 app.use(fileUpload());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
   res.send("This is a test route");

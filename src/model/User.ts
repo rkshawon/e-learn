@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Role } from "../interface/user.interface";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -20,6 +21,11 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please add password"],
     minlength: 6,
     select: false,
+  },
+  role: {
+    type: String,
+    enum: Object.values(Role),
+    default: "user",
   },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
