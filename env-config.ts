@@ -9,6 +9,8 @@ const config = {
   geo_coder_api_key: process.env.GEOCODER_AP_KEY as string,
   image_size_limit: process.env.IMAGE_SIZE_LIMIT,
   file_upload_path: process.env.FILE_UPLOAD_PATH as string,
+  jwt_secret: process.env.JWT_SECRET as string,
+  jwt_expire: process.env.JWT_EXPIRE as string,
 };
 
 export default config;

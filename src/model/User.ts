@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import { Role } from "../interface/user.interface";
+import bcrypt from "bcryptjs";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -21,12 +23,22 @@ const UserSchema = new mongoose.Schema({
     minlength: 6,
     select: false,
   },
+  role: {
+    type: String,
+    enum: Object.values(Role),
+    default: "user",
+  },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   createdAt: {
     type: Date,
     default: Date.now,
   },
+});
+
+UserSchema.pre("save", async function (next) {
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
 });
 
 const UserModel = mongoose.model("User", UserSchema);

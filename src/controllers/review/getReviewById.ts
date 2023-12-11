@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import asyncHandler from "../../middleware/asyncHandler";
-import BootCampModel from "../../model/Bootcamp";
 import CustomError from "../../utils/customError";
+import UserModel from "../../model/User";
 
-const deleteBootcamp = asyncHandler(
+const getReviewById = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
 
-    const data = await BootCampModel.findByIdAndUpdate(id, req.body, {
+    const data = await UserModel.findByIdAndUpdate(id, req.body, {
       new: true,
     });
 
@@ -22,4 +22,4 @@ const deleteBootcamp = asyncHandler(
   }
 );
 
-export default deleteBootcamp;
+export default getReviewById;

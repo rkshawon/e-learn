@@ -3,13 +3,11 @@ import asyncHandler from "../../middleware/asyncHandler";
 import BootCampModel from "../../model/Bootcamp";
 import CustomError from "../../utils/customError";
 
-const deleteBootcamp = asyncHandler(
+const updateBootcamp = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
 
-    const data = await BootCampModel.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
+    const data = await BootCampModel.findByIdAndDelete(id);
 
     if (!data) {
       return next(new CustomError("data not found", 404));
@@ -22,4 +20,4 @@ const deleteBootcamp = asyncHandler(
   }
 );
 
-export default deleteBootcamp;
+export default updateBootcamp;
