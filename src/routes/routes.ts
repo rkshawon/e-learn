@@ -3,10 +3,15 @@ import bootcampRoutes from "../controllers/bootcamp/routes";
 import courseRoutes from "../controllers/course/routes";
 import userRoutes from "../controllers/user/routes";
 import reviewRoutes from "../controllers/review/routes";
+import authRoutes from "../controllers/auth/routes";
 
 const router = express.Router();
 
 const apiRoutes = [
+  {
+    api_route: "/auth",
+    path: authRoutes,
+  },
   {
     api_route: "/bootcamp",
     path: bootcampRoutes,

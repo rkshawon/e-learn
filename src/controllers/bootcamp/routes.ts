@@ -6,8 +6,11 @@ import updateBootcamp from "./updateBootcamp";
 import deleteBootcamp from "./deleteBootcamp";
 import getBootcampById from "./getBootcampById";
 import uploadPhotoBootcamp from "./uploadPhotoBootcamp";
+import validateReq from "../../middleware/validateReq";
 
 const router = express.Router();
+
+router.use(validateReq);
 
 router.post("/", createBootcamp);
 router.get("/:id", getBootcampById);

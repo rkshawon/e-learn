@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const createBootcamp_1 = __importDefault(require("./createBootcamp"));
+const getBootcamp_1 = __importDefault(require("./getBootcamp"));
+const getBootcampByRadius_1 = __importDefault(require("./getBootcampByRadius"));
+const updateBootcamp_1 = __importDefault(require("./updateBootcamp"));
+const deleteBootcamp_1 = __importDefault(require("./deleteBootcamp"));
+const getBootcampById_1 = __importDefault(require("./getBootcampById"));
+const uploadPhotoBootcamp_1 = __importDefault(require("./uploadPhotoBootcamp"));
+const router = express_1.default.Router();
+router.post("/", createBootcamp_1.default);
+router.get("/:id", getBootcampById_1.default);
+router.get("/radius/:zipcode/:distance", getBootcampByRadius_1.default);
+router.get("/", getBootcamp_1.default);
+router.put("/:id/photo", uploadPhotoBootcamp_1.default);
+router.patch("/:id", updateBootcamp_1.default);
+router.delete("/:id", deleteBootcamp_1.default);
+exports.default = router;
