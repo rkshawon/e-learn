@@ -3,6 +3,7 @@ import { Document } from "mongoose";
 export enum Role {
   User = "user",
   Publisher = "publisher",
+  ADMIN = "admin",
 }
 
 interface User extends Document {
