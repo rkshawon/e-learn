@@ -9,6 +9,7 @@ import errorHandler from "./middleware/errorHandler";
 import fileUpload from "express-fileupload";
 import path from "path";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const port = config.port || 8001;
@@ -18,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
+app.use(cookieParser());
 
 const server = http.createServer(app);
 
