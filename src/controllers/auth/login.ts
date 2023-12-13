@@ -8,7 +8,9 @@ import bcrypt from "bcryptjs";
 
 const login = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const data = await UserModel.findOne({ email: req.body.email });
+    const data = await UserModel.findOne({ email: req.body.email })
+      .select("+password")
+      .lean();
 
     if (!data) {
       return next(new CustomError("User not found", 404));
@@ -41,9 +43,11 @@ const login = asyncHandler(
 
     // res.cookie('refreshToken', refreshToken, cookieOptions);
 
-    res.status(200).cookie("token", accessToken, cookieOptions).json({
+    const { password, ...rest } = data;
+
+    res.status(200).cookie("accessToken", accessToken, cookieOptions).json({
       message: "success",
-      data,
+      data: rest,
       accessToken,
     });
   }

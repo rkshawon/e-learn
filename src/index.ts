@@ -10,6 +10,9 @@ import fileUpload from "express-fileupload";
 import path from "path";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import mongoSanitize from "express-mongo-sanitize";
+import helmet from "helmet";
+import hpp from "hpp";
 
 const app = express();
 const port = config.port || 8001;
@@ -34,6 +37,10 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1", router);
 app.use(errorHandler);
+
+app.use(mongoSanitize());
+app.use(helmet());
+app.use(hpp());
 
 main().catch((err) => console.log(err));
 async function main() {

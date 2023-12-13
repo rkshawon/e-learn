@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import { Document, Schema } from "mongoose";
 
 export enum Careers {
   WebDeveloper = "Web developer",
@@ -37,6 +37,7 @@ interface IBootcamp extends Document {
   jobAssistance: boolean;
   jobGuarantee: boolean;
   acceptGi: boolean;
+  user: Schema.Types.ObjectId;
   createdAt: Date;
 }
 
