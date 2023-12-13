@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import asyncHandler from "../../middleware/asyncHandler";
-import CourseModel from "../../model/Course";
+import ReviewModel from "../../model/Review";
 
 const getReview = asyncHandler(async (req: Request, res: Response) => {
-  const data = await CourseModel.find();
+  const data = await ReviewModel.find();
 
   res.status(200).json({
     message: "success",

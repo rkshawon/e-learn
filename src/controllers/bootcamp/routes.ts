@@ -1,5 +1,6 @@
 import express from "express";
 import createBootcamp from "./createBootcamp";
+import createBootcampReview from "./createBootcampReview";
 import getBootcamp from "./getBootcamp";
 import getBootcampByRadius from "./getBootcampByRadius";
 import updateBootcamp from "./updateBootcamp";
@@ -13,6 +14,7 @@ const router = express.Router();
 router.use(validateReq);
 
 router.post("/", createBootcamp);
+router.post("/:id/review", createBootcampReview);
 router.get("/:id", getBootcampById);
 router.get("/radius/:zipcode/:distance", getBootcampByRadius);
 router.get("/", getBootcamp);
